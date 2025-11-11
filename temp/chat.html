@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<textarea id="chat_msg" cols="100" rows="30" readonly></textarea>
+<input type="text" id="chat_message_input" size="200">
+<input type="button" id="chat_message_submit" value="send">
+
+
+<script>
+    const chatsocket = new websocket(
+    'ws://' + window/location.host + '/ws/chat/'
+    );
+
+    chatsocket.onMessage =function(a){
+    const data = json.parse(a.data);
+    document.querySelector('#chat_msg').value += (data.message + '\n' );
+    };
+    document.querySelector('#chat_message_submit').onclick = function(a) {
+    const messageInputDom = document.querySelector('#chat_message_input');
+    const message = messageInputDom.value;
+    chatSocket.send(JSON.stringify({'message': message}));
+    messageInputDom.value = '';
+
+
+</script>
+</body>
+</html>
